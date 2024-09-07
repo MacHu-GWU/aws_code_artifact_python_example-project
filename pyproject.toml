@@ -27,6 +27,16 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3 :: Only",
 ]
+include = [
+    "*.txt",
+    "*.rst",
+]
+exclude = [
+    "*.pyc",
+    "*.pyo",
+    "aws_code_artifact_python_example/docs/*",
+    "aws_code_artifact_python_example/tests/*",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"

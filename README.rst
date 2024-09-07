@@ -68,7 +68,7 @@ Doing Development
 
 
 Building Documentation
-------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 生成文档 ``文档会被生成到 ``docs/build/html`` 目录下.``::
 
     make build-doc
@@ -95,7 +95,7 @@ Building Documentation
 
 
 Build and Publish
-------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 在本地构建 Python 包::
 
     make build
@@ -107,3 +107,8 @@ Build and Publish
 将特定版本的 Python 包从 AWS CodeArtifact 删除 (后悔药)::
 
     make remove
+
+
+Configure AWS Credential in GitHub Action
+------------------------------------------------------------------------------
+请参考 `AWS Setup <./docs/source/00-AWS-Setup/index.rst>`_ 中的说明来为你的 GitHub Action 配置 AWS 权限, 使得 GitHub Action CI 可以从 AWS CodeArtifact 上拉取私有 Python 依赖.
