@@ -3,4 +3,4 @@
 
 from private_pyproject_ops.main import pyops
 
-pyops.run_cov_test()
+pyops.view_latest_doc()

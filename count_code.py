@@ -20,14 +20,12 @@ dir_here = Path.dir_here(__file__)
 
 app_code = count_line_in_many_dir(
     [
-        dir_here / "aws_codeartifact_python",
-        dir_here / "lambda_app",
+        dir_here / "aws_code_artifact_python_example",
     ]
 )
 test_code = count_line_in_many_dir(
     [
         dir_here / "tests",
-        dir_here / "tests_int",
     ]
 )
 ops_code = count_line_in_many_dir(

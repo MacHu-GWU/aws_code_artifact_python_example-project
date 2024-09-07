@@ -4,10 +4,6 @@ help: ## ** Show this help message
 	@perl -nle'print $& if m{^[a-zA-Z_-]+:.*?## .*$$}' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-40s\033[0m %s\n", $$1, $$2}'
 
 
-info: ## ** Show Project Information
-	python ./bin/s00_show_project_info.py
-
-
 venv-create: ## ** Create Virtual Environment
 	python ./bin/s01_1_venv_create.py
 
@@ -18,6 +14,10 @@ venv-remove: ## ** Remove Virtual Environment
 
 poetry-add-source: ## Add AWS CodeArtifact as secondary source in poetry
 	python ./bin/s02_0_configure_poetry.py
+
+
+poetry-lock: ## Resolve dependencies using poetry, update poetry.lock file
+	python ./bin/s02_0_poetry_lock.py
 
 
 install: ## ** Install main dependencies and Package itself
@@ -41,15 +41,7 @@ install-automation: ## Install Dependencies for Automation Script
 
 
 install-all: ## Install All Dependencies
-	python ./bin/s02_6_install_all.py
-
-
-poetry-export: ## Export requirements-*.txt from poetry.lock file
-	python ./bin/s02_7_poetry_export.py
-
-
-poetry-lock: ## Resolve dependencies using poetry, update poetry.lock file
-	python ./bin/s02_8_poetry_lock.py
+	python ./bin/s02_7_install_all.py
 
 
 test: install install-test test-only ## ** Run test
@@ -73,6 +65,10 @@ int-only: ## Run integration test without checking test dependencies
 	./.venv/bin/python ./bin/s03_3_run_int_test.py
 
 
+view-cov: ## View code coverage test report
+	./.venv/bin/python ./bin/s03_3_view_cov_result.py
+
+
 build-doc: install install-doc ## Build documentation website locally
 	./.venv/bin/python ./bin/s04_1_build_doc.py
 
@@ -81,5 +77,25 @@ view-doc: ## View documentation website locally
 	./.venv/bin/python ./bin/s04_2_view_doc.py
 
 
+deploy-versioned-doc: install install-doc ## Deploy documentation website with version
+	./.venv/bin/python ./bin/s04_3_deploy_versioned_doc.py
+
+
+deploy-latest-doc: install install-doc ## Deploy documentation website with latest version
+	./.venv/bin/python ./bin/s04_4_deploy_latest_doc.py
+
+
+view-latest-doc: install install-doc ## View documentation website with latest version
+	./.venv/bin/python ./bin/s04_5_view_latest_doc.py
+
+
+build: ## Build Python library distribution package
+	./.venv/bin/python ./bin/s05_1_build_package.py
+
+
 publish: ## Publish Python library to AWS CodeArtifact
-	./.venv/bin/python ./bin/s05_1_publish.py
+	./.venv/bin/python ./bin/s05_2_publish_package.py
+
+
+remove: ## Remove Python package version from AWS CodeArtifact
+	./.venv/bin/python ./bin/s05_3_remove_package_version.py

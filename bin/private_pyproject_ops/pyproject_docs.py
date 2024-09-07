@@ -24,6 +24,8 @@ class PyProjectDocs:
     Namespace class for document related automation.
     """
 
+    doc_host_s3_bucket: str = dataclasses.field()
+
     def build_doc(
         self: "PyProjectOps",
         dry_run: bool = False,
@@ -71,7 +73,6 @@ class PyProjectDocs:
 
     def deploy_versioned_doc(
         self: "PyProjectOps",
-        bucket: str,
         prefix: str = "projects/",
         aws_profile: T.Optional[str] = None,
         dry_run: bool = False,
@@ -87,7 +88,7 @@ class PyProjectDocs:
             "s3",
             "sync",
             f"{self.dir_sphinx_doc_build_html}",
-            f"s3://{bucket}/{prefix}{self.package_name}/{self.package_version}/",
+            f"s3://{self.doc_host_s3_bucket}/{prefix}{self.package_name}/{self.package_version}/",
         ]
         if aws_profile:
             args.extend(["--profile", aws_profile])
@@ -97,7 +98,6 @@ class PyProjectDocs:
 
     def deploy_latest_doc(
         self: "PyProjectOps",
-        bucket: str,
         prefix: str = "projects/",
         aws_profile: T.Optional[str] = None,
         dry_run: bool = False,
@@ -113,7 +113,7 @@ class PyProjectDocs:
             "s3",
             "sync",
             f"{self.dir_sphinx_doc_build_html}",
-            f"s3://{bucket}/{prefix}{self.package_name}/latest/",
+            f"s3://{self.doc_host_s3_bucket}/{prefix}{self.package_name}/latest/",
         ]
         if aws_profile:
             args.extend(["--profile", aws_profile])
@@ -123,7 +123,6 @@ class PyProjectDocs:
 
     def view_latest_doc(
         self: "PyProjectOps",
-        bucket: str,
         prefix: str = "projects/",
         dry_run: bool = False,
     ):
@@ -134,7 +133,7 @@ class PyProjectDocs:
         https://my-bucket.s3.amazonaws.com/my-prefix/my_package/latest/index.html
         """
         url = (
-            f"https://{bucket}.s3.amazonaws.com/{prefix}{self.package_name}"
+            f"https://{self.doc_host_s3_bucket}.s3.amazonaws.com/{prefix}{self.package_name}"
             f"/latest/{self.path_sphinx_doc_build_index_html.name}"
         )
         args = [OPEN_COMMAND, url]
