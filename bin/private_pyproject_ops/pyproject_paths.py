@@ -139,6 +139,9 @@ class PyProjectPaths:
         """
         if cmd == "poetry":
             print("self.dir_venv_bin.joinpath(cmd)")
+            print(self.dir_venv_bin.joinpath(cmd))
+            print(list(self.dir_venv_bin.iterdir()))
+            print("self.dir_venv_bin.joinpath(cmd)")
             print(self.dir_venv_bin.joinpath(cmd).exists())
             print("p = self.path_sys_executable.parent.joinpath(cmd)")
             print(self.path_sys_executable.parent.joinpath(cmd).exists())
