@@ -10,6 +10,8 @@ import dataclasses
 from pathlib import Path
 from functools import cached_property
 
+from .vendor.os_platform import IS_WINDOWS
+
 
 @dataclasses.dataclass
 class PyProjectPaths:
@@ -77,7 +79,10 @@ class PyProjectPaths:
 
         Example: ``${dir_project_root}/.venv/bin``
         """
-        return self.dir_venv.joinpath("bin")
+        if IS_WINDOWS:
+            return self.dir_venv.joinpath("Scripts")
+        else:
+            return self.dir_venv.joinpath("bin")
 
     def get_path_venv_bin_cli(self, cmd: str) -> Path:
         """
