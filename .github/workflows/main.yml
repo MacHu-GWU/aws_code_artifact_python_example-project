@@ -21,8 +21,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     strategy:
       matrix:
-#        os: ["ubuntu-latest", "windows-latest"]
-        os: ["ubuntu-latest", ] # for debug only
+        os: ["ubuntu-latest", "windows-latest"]
+#        os: ["ubuntu-latest", ] # for debug only
 #        os: ["windows-latest", ] # for debug only
 #        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
         python-version: ["3.8", ] # for debug only
@@ -51,10 +51,9 @@ jobs:
         name: "Install dependencies on Windows"
         run: |
           python -m site
-          python -m pip install --upgrade pip setuptools
-          python -m pip install -r requirements-automation.txt
+          python -m pip install --upgrade pip setuptools virtualenv
           python -m virtualenv .venv
           .venv\Scripts\pip install -r requirements-automation.txt
-          python bin\s02_1_install.py
-          python bin\s02_3_install_test.py
-          .venv\Scripts\pytest tests --cov=dynamodb_json_seder
+          .venv\Scripts\python bin\s02_1_install.py
+          .venv\Scripts\python bin\s02_3_install_test.py
+          .venv\Scripts\pytest tests --cov=aws_code_artifact_python_example
