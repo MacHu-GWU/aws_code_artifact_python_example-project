@@ -54,6 +54,6 @@ jobs:
           python -m pip install --upgrade pip setuptools virtualenv
           python -m virtualenv .venv
           .venv\Scripts\pip install -r requirements-automation.txt
-          .venv\Scripts\python3 bin\s02_1_install.py
-          .venv\Scripts\python3 bin\s02_3_install_test.py
+          .venv\Scripts\python bin\s02_1_install.py
+          .venv\Scripts\python bin\s02_3_install_test.py
           .venv\Scripts\pytest tests --cov=aws_code_artifact_python_example
