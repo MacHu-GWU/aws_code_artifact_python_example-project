@@ -41,10 +41,11 @@ jobs:
           set -xe
           python -VV
           python -m site
-          python -m pip install --upgrade pip setuptools
-          python -m pip install -r requirements-automation.txt
+          python -m pip install --upgrade pip setuptools virtualenv
           python -m virtualenv .venv
-          poetry install --with test
+          .venv/bin/pip install -r requirements-automation.txt
+          .venv/bin/python bin/s02_1_install.py
+          .venv/bin/python bin/s02_3_install_test.py
           .venv/bin/pytest tests --cov=aws_code_artifact_python_example
       - if: matrix.os == 'windows-latest'
         name: "Install dependencies on Windows"
