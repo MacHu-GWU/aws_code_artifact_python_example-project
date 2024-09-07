@@ -10,7 +10,7 @@ maintainers = [
     "Sanhe Hu <husanhe@gmail.com>",
 ]
 readme = "README.rst"
-homepage = "https://github.com/MacHu-GWU/dynamodb_json_seder-project"
+homepage = "https://github.com/MacHu-GWU/aws_code_artifact_python_example-project"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -92,6 +92,7 @@ pytest-cov = ">=2.12.1,<3.0.0"
 name = "bmt_python"
 url = "https://bmt-862612136886.d.codeartifact.us-east-1.amazonaws.com/pypi/bmt-python/simple/"
 priority = "supplemental"
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

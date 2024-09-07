@@ -25,30 +25,42 @@ How it Works
 
 Getting Started
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-安装运行 Automation 所需的依赖::
+安装运行 Automation 所需的依赖:
+
+.. code-block:: bash
 
     pip install -r requirements-automation.txt
 
-创建虚拟环境::
+创建虚拟环境:
+
+.. code-block:: bash
 
     make venv-create
 
-安装 Python 依赖::
+安装 Python 依赖:
+
+.. code-block:: bash
 
     make install-all
 
-运行测试::
+运行测试:
+
+.. code-block:: bash
 
     make test
 
 
 Doing Development
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-在更改了依赖关系后, 需要重新生成 ``poetry.lock``::
+在更改了依赖关系后, 需要重新生成 ``poetry.lock``:
+
+.. code-block:: bash
 
     make poetry-lock
 
-重新安装最新的依赖::
+重新安装最新的依赖:
+
+.. code-block:: bash
 
     make install
     # or any of the following
@@ -58,53 +70,75 @@ Doing Development
     make install-automation
     make install-all
 
-运行代码覆盖率测试::
+运行代码覆盖率测试:
+
+.. code-block:: bash
 
     make cov
 
-运行代码覆盖率测试并查看报告::
+运行代码覆盖率测试并查看报告:
+
+.. code-block:: bash
 
     make cov && make view-cov
 
 
 Building Documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-生成文档 ``文档会被生成到 ``docs/build/html`` 目录下.``::
+生成文档 ``文档会被生成到 ``docs/build/html`` 目录下.``:
+
+.. code-block:: bash
 
     make build-doc
 
-查看本地文档::
+查看本地文档:
+
+.. code-block:: bash
 
     make view-doc
 
-生成并查看文档::
+生成并查看文档:
+
+.. code-block:: bash
 
     make build-doc && make view-doc
 
-将带版本号的文档部署到 S3::
+将带版本号的文档部署到 S3:
+
+.. code-block:: bash
 
     make deploy-versioned-doc
 
-将最新的文档部署到 S3::
+将最新的文档部署到 S3:
+
+.. code-block:: bash
 
     make deploy-latest-doc
 
-查看 S3 上的最新文档::
+查看 S3 上的最新文档:
+
+.. code-block:: bash
 
     make view-latest-doc
 
 
 Build and Publish
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-在本地构建 Python 包::
+在本地构建 Python 包:
+
+.. code-block:: bash
 
     make build
 
-发布到 AWS CodeArtifact::
+发布到 AWS CodeArtifact:
+
+.. code-block:: bash
 
     make publish
 
-将特定版本的 Python 包从 AWS CodeArtifact 删除 (后悔药)::
+将特定版本的 Python 包从 AWS CodeArtifact 删除 (后悔药):
+
+.. code-block:: bash
 
     make remove
 
