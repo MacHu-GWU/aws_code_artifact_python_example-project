@@ -137,19 +137,13 @@ class PyProjectPaths:
 
         Example: ``${dir_project_root}/.venv/bin/${cmd}`` or ``${global_python_bin}/${cmd}``
         """
-        if cmd == "poetry":
-            print("self.dir_venv_bin.joinpath(cmd)")
-            print(self.dir_venv_bin.joinpath(cmd))
-            print(list(self.dir_venv_bin.iterdir()))
-            print("self.dir_venv_bin.joinpath(cmd)")
-            print(self.dir_venv_bin.joinpath(cmd).exists())
-            print("p = self.path_sys_executable.parent.joinpath(cmd)")
-            print(self.path_sys_executable.parent.joinpath(cmd).exists())
         p = self.dir_venv_bin.joinpath(cmd)
-        if p.exists():
+        p2 = self.dir_venv_bin.joinpath(cmd + ".exe")
+        if p.exists() or p2.exists():
             return p
         p = self.path_sys_executable.parent.joinpath(cmd)
-        if p.exists():
+        p2 = self.path_sys_executable.parent.joinpath(cmd + ".exe")
+        if p.exists() or p2.exists():
             return p
         return Path(cmd)
 
